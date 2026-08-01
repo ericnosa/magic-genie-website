@@ -1,0 +1,31 @@
+{
+  "summary": "Iteration 2 validated (1) photo swap on Home and About pages, (2) build-time pre-render output for 6 SEO-critical routes, and (3) copy audit for em dashes. All targeted checks PASS. Backend regression not re-run in full (already validated in iteration_1); no code changes made this iteration.",
+  "tested_scope": ["frontend-source", "prerender-build-artifacts", "live-preview-images"],
+  "passed": [
+    "About.jsx uses new active-cleaning image (photo-1758272421751-963195322eaa) with alt 'Professional cleaner wearing gloves detailing a warm wood surface' — verified in source AND rendered on live /about",
+    "Home.jsx CLEANER_IMG uses new image (photo-1758273238415-01ec03d9ef27) with alt 'Professional cleaner mopping a bright modern living room' — verified in source AND rendered on live / (imagery-story section)",
+    "Full-site grep for old portrait ID 'photo-1730575959795-c55aba81e703' in /app/frontend/src/** → ZERO matches",
+    "Prerender output files exist for all 6 SEO routes: build/index.html, build/pricing/index.html, build/residential/index.html, build/airbnb/index.html, build/deep-cleaning/index.html, build/commercial/index.html",
+    "Each prerendered HTML has EXACTLY ONE <title>, ONE <meta name='description'>, ONE <h1> (deduplicated by prerender.js helmet-cleanup step)",
+    "Route-specific titles correct: Home='Premium cleaning in Regina, SK · Magic Genie Services', Pricing='Transparent flat pricing · Magic Genie Services', Residential='Residential cleaning in Regina · Magic Genie Services', Airbnb='Airbnb turnover cleaning in Regina · Magic Genie Services', Deep='Deep cleaning in Regina · Magic Genie Services', Commercial='Commercial cleaning in Regina · Magic Genie Services'",
+    "Route-specific H1s baked into static HTML: Pricing has 'The price you see is the price you pay.', Residential has 'Three packages. Every home covered.', Home has 'A cleaning service that treats your home like a five-star suite.', Airbnb has 'Turnovers your guests write reviews about.', Deep has 'The full reset your home has been waiting for.', Commercial has 'A cleaning partner your team stops thinking about.'",
+    "Route-specific meta descriptions present and distinct for each of the 6 routes",
+    "build/index.html contains JSON-LD LocalBusiness schema with '@type':'HouseholdCleaningService'",
+    "package.json 'build' script chains 'craco build && node scripts/prerender.js'",
+    "Copy audit: grep for em dash (—) in /app/frontend/src/**/*.jsx returned ZERO user-facing sentence-connector occurrences"
+  ],
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "notes": [
+    "About page is NOT in the prerender route list (by design — About is not in the 6 SEO-critical routes). Its SEO tags remain client-rendered via helmet-async. If SEO for /about is desired, main agent should add it to ROUTES in scripts/prerender.js.",
+    "Live preview URL runs `yarn start` (dev mode) and does NOT serve prerendered HTML — verified prerender output by direct file inspection on disk as instructed.",
+    "Emergent Resend proxy 422 issue from iteration_1 is platform-side and remains open; no regression."
+  ],
+  "test_report_links": ["/app/test_reports/iteration_1.json"],
+  "action_items": [],
+  "updated_files": [],
+  "success_rate": {"prerender": "100%", "photo_swap": "100%", "copy_audit": "100%"},
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Iteration 2 focused solely on photo swap + prerender + em-dash audit — all pass. Backend + booking flow last validated in iteration_1 (still green). Prerender output must be re-checked after any yarn build. About page is intentionally not prerendered."
+}

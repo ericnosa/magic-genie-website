@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 
-const IMG = "https://images.unsplash.com/photo-1730575959795-c55aba81e703?crop=entropy&cs=srgb&fm=jpg&w=1800&q=85";
+const IMG = "https://images.unsplash.com/photo-1758272421751-963195322eaa?crop=entropy&cs=srgb&fm=jpg&w=1800&q=85";
 
 export default function About() {
   return (
@@ -19,7 +19,7 @@ export default function About() {
           </p>
         </div>
         <div className="lg:col-span-6">
-          <img src={IMG} alt="Cleaner portrait" className="rounded-3xl w-full h-[560px] object-cover" />
+          <img src={IMG} alt="Professional cleaner wearing gloves detailing a warm wood surface" className="rounded-3xl w-full h-[560px] object-cover" />
         </div>
       </section>
 
