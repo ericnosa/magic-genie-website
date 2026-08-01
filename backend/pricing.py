@@ -1,0 +1,100 @@
+"""Pricing configuration — mirrors /app/frontend/src/config/pricing.js.
+
+This is the ONLY place pricing lives on the backend. Keep values in lockstep
+with the frontend pricing.js. Any change must be made in both files.
+"""
+
+RESIDENTIAL = {
+    "studio":     {"standard": 119, "deluxe": 169, "fresh_start": 229},
+    "one_bed":    {"standard": 149, "deluxe": 209, "fresh_start": 279},
+    "two_bed":    {"standard": 189, "deluxe": 249, "fresh_start": 329},
+    "three_bed":  {"standard": 239, "deluxe": 309, "fresh_start": 399},
+    "four_plus":  {"standard": 299, "deluxe": 379, "fresh_start": 479},
+}
+
+ADD_ONS = {
+    "eco_products":       {"name": "Eco-Friendly Product Upgrade",  "price": 20},
+    "inside_fridge":      {"name": "Inside Refrigerator Cleaning",  "price": 25},
+    "inside_oven":        {"name": "Inside Oven Cleaning",          "price": 25},
+    "interior_windows":   {"name": "Interior Window Cleaning",      "price": 40},
+    "inside_cabinets":    {"name": "Inside Cabinet Cleaning",       "price": 20},
+    "laundry":            {"name": "Laundry (One Load)",            "price": 15},
+    "pet_hair":           {"name": "Pet Hair Treatment",            "price": 15},
+    "minor_appliances":   {"name": "Minor Appliance Cleaning",      "price": 15},
+    "hood_extractor":     {"name": "Hood and Extractor Cleaning",   "price": 15},
+}
+
+# Add-ons already included in Deluxe / Fresh Start
+INCLUDED_ADDONS = {
+    "deluxe":      {"inside_fridge", "inside_oven", "interior_windows"},
+    "fresh_start": {"inside_fridge", "inside_oven", "interior_windows",
+                    "inside_cabinets"},  # cabinet exterior handled inside package scope
+}
+
+RECURRING_DISCOUNTS = {
+    "one_time":   0.00,
+    "monthly":    0.05,
+    "biweekly":   0.10,
+    "weekly":     0.15,
+}
+
+DEEP_CLEAN_STARTING = 279
+AIRBNB_RANGES = {
+    "studio_1br": {"min": 79,  "max": 99},
+    "two_plus":   {"min": 109, "max": 139},
+}
+AIRBNB_SAME_DAY = 25
+MIN_BOOKING = 99
+
+HOME_SIZE_LABELS = {
+    "studio": "Studio",
+    "one_bed": "One Bedroom",
+    "two_bed": "Two Bedroom",
+    "three_bed": "Three Bedroom",
+    "four_plus": "Four+ Bedrooms",
+}
+
+PACKAGE_LABELS = {
+    "standard": "Standard Clean",
+    "deluxe": "Deluxe Clean",
+    "fresh_start": "Fresh Start Clean",
+}
+
+
+def compute_quote(home_size: str, package: str, add_ons: list[str],
+                  recurring: str = "one_time") -> dict:
+    """Server-side quote calculation. Returns line items + totals."""
+    base = RESIDENTIAL[home_size][package]
+    included = INCLUDED_ADDONS.get(package, set())
+
+    add_on_lines = []
+    add_on_total = 0
+    for key in add_ons:
+        if key in included or key not in ADD_ONS:
+            continue
+        add_on_lines.append({
+            "key": key,
+            "name": ADD_ONS[key]["name"],
+            "price": ADD_ONS[key]["price"],
+        })
+        add_on_total += ADD_ONS[key]["price"]
+
+    subtotal = base + add_on_total
+    discount_rate = RECURRING_DISCOUNTS.get(recurring, 0)
+    discount_amount = round(subtotal * discount_rate, 2)
+    total = max(subtotal - discount_amount, MIN_BOOKING)
+
+    return {
+        "home_size": home_size,
+        "home_size_label": HOME_SIZE_LABELS[home_size],
+        "package": package,
+        "package_label": PACKAGE_LABELS[package],
+        "base_price": base,
+        "add_ons": add_on_lines,
+        "add_on_total": add_on_total,
+        "subtotal": subtotal,
+        "recurring": recurring,
+        "discount_rate": discount_rate,
+        "discount_amount": discount_amount,
+        "total": total,
+    }

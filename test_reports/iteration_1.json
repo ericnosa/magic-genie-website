@@ -1,0 +1,41 @@
+{
+  "summary": "First-finish smoke pass on Magic Genie Services — backend APIs and full booking UI flow tested end-to-end. Backend pricing math, quote endpoint, booking creation/retrieval, contact submission, min-booking, and validation all pass. Frontend Home → Pricing → 5-step Booking → Confirmation flow works with correct live total ($264) and MG-XXXXXX reference. Robots.txt and sitemap.xml served. Meta title present via react-helmet-async. No hourly/other-city language present. One backend issue: Resend/Emergent email integration returns HTTP 422 (booking still confirmed since email is best-effort, but customers won't receive confirmation email).",
+  "tested_scope": ["backend", "frontend", "integration"],
+  "passed": [
+    "GET /api/ returns {service:'Magic Genie Services', status:'ok'}",
+    "GET /api/pricing returns full config: min_booking=99, two_bed.deluxe=249, recurring discounts correct, included_addons.deluxe includes inside_fridge/inside_oven/interior_windows",
+    "POST /api/quote two_bed+deluxe+[pet_hair,inside_fridge]+biweekly → base 249, add-ons=[pet_hair $15] (inside_fridge dropped as included), subtotal 264, discount 10% -$26.40, total $237.60 — exact match",
+    "POST /api/quote invalid home_size → HTTP 400",
+    "POST /api/quote studio+standard=$119, four_plus+fresh_start=$479 (published table matches)",
+    "POST /api/quote weekly discount rate=0.15 applied correctly (two_bed standard weekly = $160.65)",
+    "Min booking $99 enforced (studio standard weekly = $101.15 >= 99)",
+    "POST /api/bookings creates MG-XXXXXX id, status='confirmed', persists to Mongo, returns full quote breakdown, no ObjectId leakage",
+    "GET /api/bookings/{id} returns booking; unknown id → 404",
+    "POST /api/contact kind=general and kind=commercial_quote both return {status:'received', id:UUID}",
+    "Frontend: Home page loads with hero, 3 package cards, all key data-testids present",
+    "Frontend: Pricing page shows $119/$249/$479 correctly",
+    "Frontend: 5-step booking flow (Service→Details→When→Contact→Review→Confirm) works, live summary total = $264.00 for two_bed deluxe + pet_hair",
+    "Frontend: 'Included' badge visible on deluxe package add-ons",
+    "Frontend: Confirmation page displays MG-XXXXXX reference after booking",
+    "Frontend: Commercial page loads, FAQ accordion expands",
+    "Frontend: No 'hourly'/'per hour'/'Saskatoon'/'Winnipeg' language anywhere",
+    "Meta title present: 'Premium cleaning in Regina, SK · Magic Genie Services'",
+    "robots.txt and sitemap.xml both HTTP 200; sitemap contains residential, deep-cleaning, etc.",
+    "Zero console errors during full booking flow"
+  ],
+  "failed": [
+    {
+      "area": "backend/email integration",
+      "issue": "Emergent-managed Resend proxy returns HTTP 422 'unknown' for every send. Booking API still returns 200 (best-effort), but neither customer confirmation nor admin notification emails are actually delivered.",
+      "evidence": "backend.err.log: 'HTTP Request: POST https://integrations.emergentagent.com/api/v1/email/send HTTP/1.1 422 unknown' for both delivered@resend.dev and info@magicgenieservices.ca. emailer.py sends payload {to:[..], subject, html, from_name, contact_email} with header X-Email-Key — likely a payload/header schema mismatch with the Emergent email API.",
+      "priority": "MEDIUM"
+    }
+  ],
+  "action_items": [
+    "Investigate Emergent email API 422: verify correct endpoint, required fields (may need 'from' address, 'text' body, or different header name like 'Authorization: Bearer'), and update /app/backend/emailer.py payload/headers. Test with a single send after fix.",
+    "Confirm EMERGENT_EMAIL_KEY is valid for the integrations.emergentagent.com endpoint."
+  ],
+  "success_rate": {"backend": "92%", "frontend": "100%"},
+  "retest_needed": true,
+  "full_testing_deferred": true
+}
