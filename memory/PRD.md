@@ -41,7 +41,6 @@ Rebuild Magic Genie Services into the benchmark premium cleaning company website
 - **Email delivery**: the Emergent Resend proxy returns 422 "undeliverable_recipient" for every recipient with the current placeholder `EMERGENT_EMAIL_KEY`. Code is correct per playbook; the platform proxy needs the app to be claimed/provisioned before it stops pre-blocking recipients. Booking creation is unaffected — the confirmation page carries the reference, address, time, and total.
 
 ## Deferred (P1) — build after Phase 2 sign-off
-- Pre-render / static-snapshot step at build time for Home, Pricing, and the three service pages (user requested this on top of the client-render + helmet approach).
 - Google Calendar event creation on booking confirm.
 - Booking reminders (T-24h) via cron.
 - Customer portal (past/upcoming bookings, receipts, saved addresses, recurring management).
@@ -49,6 +48,10 @@ Rebuild Magic Genie Services into the benchmark premium cleaning company website
 - Admin manual approve/decline/request-changes workflow.
 - Staff portal (today's jobs, checklist, photos, arrival/completion).
 - Testimonials / Google Reviews integration.
+
+## Recently completed (2026-08-01, session 2)
+- **Pre-render pipeline for SEO-critical routes** — `/app/frontend/scripts/prerender.js` boots a minimal static server on the built folder, uses Puppeteer to snapshot Home, Residential, Deep Cleaning, Airbnb, Commercial, and Pricing to per-route `index.html` files with real content + helmet meta. Wired into `yarn build` so it runs automatically on every production build. Root route is snapshotted last so the SPA fallback for other routes always uses the empty shell.
+- **Cleaner-in-action photography** — swapped the About page portrait and Home page team photo for two active-cleaning shots (mopping, gloved surface detailing) from Unsplash.
 
 ## Deferred (P2)
 - Payments (Stripe with Crypto option).
