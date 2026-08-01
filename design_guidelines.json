@@ -1,0 +1,123 @@
+{
+  "theme": "light",
+  "typography": {
+    "headings": {
+      "font_family": "Cormorant Garamond, serif",
+      "weights": ["light", "regular", "semibold"],
+      "styling": "tracking-tight leading-none",
+      "h1": "text-5xl lg:text-7xl fluid scaling",
+      "h2": "text-3xl lg:text-4xl",
+      "h3": "text-2xl"
+    },
+    "body": {
+      "font_family": "Manrope, sans-serif",
+      "weights": ["regular", "medium"],
+      "styling": "leading-relaxed text-base lg:text-lg"
+    },
+    "labels": {
+      "styling": "uppercase tracking-[0.2em] text-xs font-semibold"
+    }
+  },
+  "colors": {
+    "primary": {
+      "deep_navy": "#0A1128",
+      "white": "#FFFFFF",
+      "warm_ivory": "#FDFBF7",
+      "champagne_gold": "#D4AF37"
+    },
+    "accent": {
+      "emerald_green": "#0F5132",
+      "soft_red": "#842029"
+    },
+    "usage": {
+      "background": "Warm Ivory (#FDFBF7) and White (#FFFFFF) for primary surfaces. Deep Navy (#0A1128) for high-contrast sections (e.g., footer, premium hero overlay).",
+      "text": "Deep Navy on light backgrounds, Warm Ivory on dark backgrounds.",
+      "cta": "Champagne Gold (#D4AF37) for premium primary actions (Book Now) only. Deep Navy for secondary buttons."
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": "Optical Clarity Glassmorphism for sticky nav and mobile CTA: backdrop-blur-2xl bg-white/70 (light) or bg-[#0A1128]/70 (dark) with 1px delicate inner border.",
+    "shadows": "Elegant ambient shadows: shadow-[0_8px_32px_rgba(10,17,40,0.08)]. Avoid harsh drop shadows.",
+    "border_radius": "Soft radius: rounded-2xl or rounded-3xl for cards. Pill-shaped (rounded-full) for all buttons.",
+    "borders": "1px solid border-deep_navy/5 for light cards to ground them."
+  },
+  "grids_layouts": {
+    "spacing": "Generous. Use p-12, p-16, p-24, p-32. The layout must feel like a luxury resort brochure with ample breathing room.",
+    "structure": "Bento grids for features (Standard vs Deluxe vs Fresh Start comparison). Asymmetric layouts for marketing storytelling.",
+    "alignment": "Left-align dense text, forms, and package details. Center-align only for deliberate architectural symmetry in hero or interstitials."
+  },
+  "motion": {
+    "libraries": ["framer-motion"],
+    "interactions": "Smooth elevation on hover (-translate-y-1 + shadow increase). Button ripple, subtle parallax on background images, elegant page fade transitions.",
+    "booking_flow": "Smooth step-by-step progress reveals, accordion for FAQs, skeleton loading for price summary sidebar.",
+    "accessibility": "Always respect prefers-reduced-motion via Tailwind."
+  },
+  "components": {
+    "buttons": "Pill-shaped (rounded-full), large padding (px-8 py-4). Primary: Champagne Gold or Deep Navy background. Hover: smooth elevation and slight brightness adjustment.",
+    "cards": "Subtle border, soft radius, flat background (White) on Warm Ivory canvas. No heavy shadows by default.",
+    "navigation": "Sticky glassmorphism header, z-50. Must have visible nav links on desktop, primary Book Now CTA. No completely transparent headers.",
+    "booking_form": "Multi-step luxury flow. Use Shadcn Form, Input, Select, and Calendar components but HEAVILY customize them to remove the 'Vercel-look'. Use Champagne Gold/Deep Navy focus rings. Live price summary sidebar.",
+    "trust_indicators": "Testimonials, guarantees, insurance/bonded messaging integrated elegantly. No fake reviews."
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1682888813913-e13f18692019?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBicmlnaHQlMjBraXRjaGVuJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzg1NjA5MzEzfDA&ixlib=rb-4.1.0&q=85",
+        "category": "Hero / Residential Services",
+        "description": "Large luxury bright kitchen with marble island and white cabinets"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1756079664354-34944e001f6d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBiYXRocm9vbSUyMGhvdGVsfGVufDB8fHx8MTc4NTYwOTMxM3ww&ixlib=rb-4.1.0&q=85",
+        "category": "Services / Deep Clean",
+        "description": "Modern luxury bathroom with marble vanity"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1631049421450-348ccd7f8949?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHw0fHxjbGVhbiUyMGhvdGVsJTIwc3R5bGUlMjBiZWRyb29tJTIwYnJpZ2h0fGVufDB8fHx8MTc4NTYwOTMxM3ww&ixlib=rb-4.1.0&q=85",
+        "category": "Services / Airbnb Turnaround",
+        "description": "Clean hotel style bedroom with bright linens"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1730575959795-c55aba81e703?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHw0fHxzbWlsaW5nJTIwaG91c2UlMjBjbGVhbmVyJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzg1NjA5MzEzfDA&ixlib=rb-4.1.0&q=85",
+        "category": "About / Trust / Team",
+        "description": "Smiling professional house cleaner portrait"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1733935156769-fe0c2a600d6c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHwyfHxjaGFtcGFnbmUlMjBnb2xkJTIwYWJzdHJhY3QlMjB0ZXh0dXJlfGVufDB8fHx8MTc4NTYwOTMxM3ww&ixlib=rb-4.1.0&q=85",
+        "category": "Backgrounds / Accents",
+        "description": "Champagne gold abstract texture"
+      }
+    ],
+    "guidelines": "Photography MUST be premium realistic photos of bright homes, luxury spaces, and professional cleaners. NO cartoons, NO fake sparkles, NO cheap stock photography."
+  },
+  "accessibility": {
+    "contrast": "Ensure minimum 4.5:1 contrast for normal text. Champagne Gold text on White requires careful handling or text-shadow.",
+    "testing": "All interactive and key informational elements MUST include a data-testid attribute (e.g., data-testid='book-now-button').",
+    "motion": "Respect prefers-reduced-motion via Tailwind media queries."
+  },
+  "instructions_to_main_agent": [
+    "Use pure HTML/Tailwind for marketing layouts. Avoid standard Shadcn Cards/Sections for creative layouts.",
+    "Use Shadcn heavily for the multi-step booking flow (forms, inputs, dropdowns, calendar, dialogs). Customize them to remove the Vercel look.",
+    "Do NOT use HTML input type='date', use Shadcn Calendar.",
+    "Position as a luxury hospitality experience. Never mention 'hourly' pricing. Enforce FLAT pricing (Residential $119-$479, Deep Cleaning from $279, Airbnb $79-$139).",
+    "Service area is strictly Regina, Saskatchewan.",
+    "Business Phone: 639-590-1059 | Email: info@magicgenieservices.ca.",
+    "No em dashes, no inflated language, no rule-of-three cadence in copy.",
+    "Do not put transparent backgrounds behind text or in the header. Use glassmorphism or solid fills."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons. Use lucide-react.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Use sonner for toasts. Sonner component is located in /app/frontend/src/components/ui/sonner.js."
+  ]
+}
