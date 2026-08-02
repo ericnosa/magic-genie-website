@@ -8,10 +8,8 @@ import { LogoMark } from "@/components/LogoMark";
 
 const HERO_IMG =
   "https://images.unsplash.com/photo-1682888813913-e13f18692019?crop=entropy&cs=srgb&fm=jpg&w=2000&q=85";
-const KITCHEN_IMG =
-  "https://images.unsplash.com/photo-1756079664354-34944e001f6d?crop=entropy&cs=srgb&fm=jpg&w=1400&q=85";
-const BEDROOM_IMG =
-  "https://images.unsplash.com/photo-1631049421450-348ccd7f8949?crop=entropy&cs=srgb&fm=jpg&w=1400&q=85";
+const KITCHEN_IMG = "/images/stovetop-scrub.jpg";
+const BEDROOM_IMG = "/images/counter-wipe.jpg";
 const CLEANER_IMG =
   "/images/three-cleaners.jpg";
 
@@ -175,8 +173,8 @@ export default function Home() {
             </Link>
           </div>
           <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-            <img src={KITCHEN_IMG} alt="Luxury bathroom" loading="lazy" className="rounded-2xl w-full h-72 object-cover" />
-            <img src={BEDROOM_IMG} alt="Hotel style bedroom" loading="lazy" className="rounded-2xl w-full h-72 object-cover mt-8" />
+            <img src={KITCHEN_IMG} alt="Close-up of a gloved hand actively scrubbing a black stovetop with a yellow sponge" loading="lazy" className="rounded-2xl w-full h-72 object-cover" />
+            <img src={BEDROOM_IMG} alt="Cleaner in a blue uniform and yellow gloves wiping a bright kitchen counter near a window" loading="lazy" className="rounded-2xl w-full h-72 object-cover mt-8" />
             <img src={CLEANER_IMG} alt="A three-person Magic Genie team actively cleaning a bright living room together" loading="lazy" className="rounded-2xl w-full h-72 object-cover col-span-2" />
           </div>
         </div>
