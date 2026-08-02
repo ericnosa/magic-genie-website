@@ -47,7 +47,7 @@ export default function Pricing() {
             <li className="flex justify-between border-b border-[#0A1128]/8 pb-3"><span>Deep cleaning</span><span className="font-serif text-lg">From ${SPECIALTY.deep_clean_starting}</span></li>
             <li className="flex justify-between border-b border-[#0A1128]/8 pb-3"><span>Airbnb · Studio / 1BR</span><span className="font-serif text-lg">${SPECIALTY.airbnb.studio_1br.min}–${SPECIALTY.airbnb.studio_1br.max}</span></li>
             <li className="flex justify-between border-b border-[#0A1128]/8 pb-3"><span>Airbnb · 2BR+</span><span className="font-serif text-lg">${SPECIALTY.airbnb.two_plus.min}–${SPECIALTY.airbnb.two_plus.max}</span></li>
-            <li className="flex justify-between border-b border-[#0A1128]/8 pb-3"><span>Same-day Airbnb guarantee</span><span className="font-serif text-lg">+${SPECIALTY.airbnb.same_day}</span></li>
+            <li className="flex justify-between border-b border-[#0A1128]/8 pb-3"><span>Same day Airbnb guarantee</span><span className="font-serif text-lg">+${SPECIALTY.airbnb.same_day}</span></li>
             <li className="flex justify-between"><span>Commercial</span><span className="font-serif text-lg">Custom quote</span></li>
           </ul>
         </div>

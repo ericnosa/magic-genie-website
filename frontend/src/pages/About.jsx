@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 
-const IMG = "/images/about-team-sofa.jpg";
+const IMG = "/images/about-team-desk.jpg";
 
 export default function About() {
   return (
@@ -19,7 +19,7 @@ export default function About() {
           </p>
         </div>
         <div className="lg:col-span-6">
-          <img src={IMG} alt="Magic Genie team member in branded uniform detailing a sofa in a styled living room, with the Magic Genie logo mounted on the wall behind" className="rounded-3xl w-full h-[560px] object-cover" />
+          <img src={IMG} alt="Magic Genie team member in branded uniform cleaning a desk in a modern office with the Magic Genie logo illuminated on the wall behind" className="rounded-3xl w-full h-[560px] object-cover" />
         </div>
       </section>
 

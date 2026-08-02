@@ -28,11 +28,10 @@ export default function Contact() {
         <div className="eyebrow">Contact</div>
         <h1 className="font-serif text-5xl lg:text-6xl mt-6 leading-[1.02] tracking-tight">We're a phone call away.</h1>
         <p className="mt-6 text-[15px] text-[#0A1128]/70 max-w-md leading-relaxed">
-          For a same-day answer, call or email. For booking, use the booking page and confirm in under two minutes.
+          For a same day answer, call or email. For booking, use the booking page and confirm in under two minutes.
         </p>
         <ul className="mt-10 space-y-4 text-[15px]">
           <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-[#D4AF37]" /><a href={BUSINESS.phoneHref} className="hover:text-[#D4AF37]">{BUSINESS.phone}</a></li>
-          <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-[#D4AF37]" /><a href={BUSINESS.genieAssistHref} className="hover:text-[#D4AF37]">Genie Assist · {BUSINESS.genieAssist}</a></li>
           <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-[#D4AF37]" /><a href={BUSINESS.emailHref} className="hover:text-[#D4AF37]">{BUSINESS.email}</a></li>
           <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-[#D4AF37]" />{BUSINESS.serviceArea.display}</li>
         </ul>

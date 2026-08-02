@@ -31,7 +31,7 @@ export default function Home() {
             <LogoMark size={88} animate testId="home-hero-logo" className="mb-8" />
             <div className="eyebrow">Regina · Saskatchewan</div>
             <h1 className="font-serif tracking-tight leading-[0.98] text-[#0A1128] text-5xl sm:text-6xl lg:text-7xl mt-6">
-              A cleaning service that treats your home like a five-star suite.
+              A cleaning service that treats your home like a five star suite.
             </h1>
             <p className="mt-8 text-[17px] leading-relaxed text-[#0A1128]/70 max-w-lg">
               Flat pricing you can see before booking. Trained teams. Calm, thoughtful work that leaves a home feeling genuinely cared for.
@@ -175,7 +175,7 @@ export default function Home() {
           <div className="lg:col-span-7 grid grid-cols-2 gap-4">
             <img src={KITCHEN_IMG} alt="Close-up of a gloved hand actively scrubbing a black stovetop with a yellow sponge" loading="lazy" className="rounded-2xl w-full h-72 object-cover" />
             <img src={BEDROOM_IMG} alt="Cleaner in a blue uniform and yellow gloves wiping a bright kitchen counter near a window" loading="lazy" className="rounded-2xl w-full h-72 object-cover mt-8" />
-            <img src={CLEANER_IMG} alt="A three-person Magic Genie team actively cleaning a bright living room together" loading="lazy" className="rounded-2xl w-full h-72 object-cover col-span-2" />
+            <img src={CLEANER_IMG} alt="A team of three Magic Genie members actively cleaning a bright living room together" loading="lazy" className="rounded-2xl w-full h-72 object-cover col-span-2" />
           </div>
         </div>
       </section>

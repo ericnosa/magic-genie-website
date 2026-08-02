@@ -6,10 +6,10 @@ const FAQS = [
   ["What areas do you serve?", "Regina, Saskatchewan. We are focused on one city so our teams and schedules stay tight."],
   ["Can I reschedule?", "Yes. Free reschedule up to 24 hours before your appointment. Inside 24 hours a 50 percent fee applies. No-shows are billed in full."],
   ["Are you insured and bonded?", "Yes. Every cleaner is background-checked, trained on our written checklist, and covered by our liability policy."],
-  ["Do you bring supplies?", "Yes. All standard products and equipment. If you prefer plant-based, low-VOC products, add the eco-friendly upgrade at booking."],
+  ["Do you bring supplies?", "Yes. All standard products and equipment. If you prefer plant based products with low chemical emissions, add the eco friendly upgrade at booking."],
   ["What if I'm not home?", "Many clients leave a key or a code. We treat every home with the same care whether you're there or not."],
-  ["Do you offer same-day Airbnb turnovers?", "Yes. Add the same-day guarantee at booking for a small flat fee."],
-  ["How is Fresh Start Clean different from Deep Clean?", "Fresh Start is our most comprehensive residential package, designed for move-in, move-out, and listing prep. Deep Clean is our standalone deep-reset service."],
+  ["Do you offer same day Airbnb turnovers?", "Yes. Add the same day guarantee at booking for a small flat fee."],
+  ["How is Fresh Start Clean different from Deep Clean?", "Fresh Start is our most comprehensive residential package, designed for moving in, moving out, and listing prep. Deep Clean is our standalone deep reset service."],
 ];
 
 export default function FAQ() {

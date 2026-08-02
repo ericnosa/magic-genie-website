@@ -13,7 +13,7 @@ RESIDENTIAL = {
 }
 
 ADD_ONS = {
-    "eco_products":       {"name": "Eco-Friendly Product Upgrade",  "price": 20},
+    "eco_products":       {"name": "Eco Friendly Product Upgrade",  "price": 20},
     "inside_fridge":      {"name": "Inside Refrigerator Cleaning",  "price": 25},
     "inside_oven":        {"name": "Inside Oven Cleaning",          "price": 25},
     "interior_windows":   {"name": "Interior Window Cleaning",      "price": 40},

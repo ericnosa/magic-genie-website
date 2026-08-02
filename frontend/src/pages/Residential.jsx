@@ -20,7 +20,7 @@ export default function Residential({ defaultPackage }) {
           Three packages. Every home covered.
         </h1>
         <p className="mt-6 text-[16px] text-[#0A1128]/70 max-w-2xl leading-relaxed">
-          Book what fits the day. Standard for regularly kept homes. Deluxe for hosting weeks. Fresh Start for move-ins, listings, and turnovers.
+          Book what fits the day. Standard for regularly kept homes. Deluxe for hosting weeks. Fresh Start for moving in or out, listings, and turnovers.
         </p>
       </section>
 

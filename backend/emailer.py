@@ -94,12 +94,12 @@ def render_customer_confirmation(booking: dict) -> str:
         </table>
 
         <p style="color:#4a5567;font-size:13px;line-height:1.7;margin:32px 0 0;font-family:Arial,sans-serif;">
-          Need to reschedule? Just reply to this email or call us at 639-590-1059. Free rescheduling is available up to 24 hours before your appointment.
+          Need to reschedule? Just reply to this email or call us at 236 506 9800. Free rescheduling is available up to 24 hours before your appointment.
         </p>
       </td></tr>
       <tr><td style="background:#FDFBF7;padding:24px 40px;text-align:center;border-top:1px solid rgba(10,17,40,0.06);">
         <div style="color:#93a1b0;font-size:12px;font-family:Arial,sans-serif;">Magic Genie Services · Regina, Saskatchewan</div>
-        <div style="color:#93a1b0;font-size:12px;font-family:Arial,sans-serif;margin-top:4px;">639-590-1059 · info@magicgenieservices.ca</div>
+        <div style="color:#93a1b0;font-size:12px;font-family:Arial,sans-serif;margin-top:4px;">236 506 9800 · info@magicgenieservices.ca</div>
       </td></tr>
     </table>
   </td></tr>

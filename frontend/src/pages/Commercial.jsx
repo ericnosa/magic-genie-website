@@ -7,8 +7,8 @@ import { BUSINESS } from "@/config/business";
 const SPACES = [
   {
     src: "/images/office-desks.jpg",
-    label: "Open-plan offices",
-    alt: "Modern open-plan office with desks, monitors, and a whiteboard",
+    label: "Open plan offices",
+    alt: "Modern open plan office with desks, monitors, and a whiteboard",
   },
   {
     src: "/images/reception-lounge.jpg",
@@ -50,7 +50,7 @@ export default function Commercial() {
         <figure className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(10,17,40,0.10)]" data-testid="commercial-hero-image">
           <img
             src="/images/commercial-team-office.jpg"
-            alt="A three-person Magic Genie team in branded uniforms cleaning a modern open-plan office with the branded cleaning cart"
+            alt="A team of three Magic Genie members in branded uniforms cleaning a modern open plan office with the branded cleaning cart"
             className="w-full h-[380px] md:h-[520px] object-cover"
             loading="eager"
           />
@@ -119,7 +119,7 @@ export default function Commercial() {
             <div className="eyebrow">Dedicated account manager</div>
             <h2 className="font-serif text-4xl mt-4 leading-[1.05]">One point of contact. Every visit accounted for.</h2>
             <p className="mt-5 text-[15px] text-[#0A1128]/75 leading-relaxed">
-              Every commercial account is paired with a named account manager who owns your schedule, quality reports, and any changes to scope. No ticket queues, no reroute through general support. Reach them directly by phone or email during business hours, and expect a same-day reply on anything urgent.
+              Every commercial account is paired with a named account manager who owns your schedule, quality reports, and any changes to scope. No ticket queues, no reroute through general support. Reach them directly by phone or email during business hours, and expect a same day reply on anything urgent.
             </p>
             <ul className="mt-6 space-y-3 text-[14px] text-[#0A1128]/75">
               {[

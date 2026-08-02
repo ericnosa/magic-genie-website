@@ -15,7 +15,7 @@ export const PACKAGES = [
     label: "Standard Clean",
     tagline: "For regularly maintained homes.",
     description:
-      "A thorough top-to-bottom clean of every room your team lives in. Kitchens, bathrooms, bedrooms, and shared spaces returned to a fresh baseline.",
+      "A thorough clean throughout every room your team lives in. Kitchens, bathrooms, bedrooms, and shared spaces returned to a fresh baseline.",
     includes: [
       "Full kitchen surfaces, sinks, and countertops",
       "Bathrooms scrubbed, mirrors polished, fixtures shined",
@@ -45,7 +45,7 @@ export const PACKAGES = [
     label: "Fresh Start Clean",
     tagline: "Most Comprehensive.",
     description:
-      "Built for move-in, move-out, listing prep, and turnover moments. Every corner receives detailed attention.",
+      "Built for moving in, moving out, listing prep, and turnover moments. Every corner receives detailed attention.",
     includes: [
       "Everything in Standard Clean",
       "Inside refrigerator cleaning",
@@ -68,7 +68,7 @@ export const RESIDENTIAL_PRICES = {
 };
 
 export const ADD_ONS = [
-  { key: "eco_products",     name: "Eco-Friendly Product Upgrade", price: 20, note: "Plant-based, low-VOC products throughout." },
+  { key: "eco_products",     name: "Eco Friendly Product Upgrade", price: 20, note: "Plant based products with low chemical emissions throughout." },
   { key: "inside_fridge",    name: "Inside Refrigerator Cleaning", price: 25, note: "Included in Deluxe and Fresh Start." },
   { key: "inside_oven",      name: "Inside Oven Cleaning",         price: 25, note: "Included in Deluxe and Fresh Start." },
   { key: "interior_windows", name: "Interior Window Cleaning",     price: 40, note: "Included in Deluxe.", range: "$30–$50" },
@@ -89,7 +89,7 @@ export const INCLUDED_ADDONS = {
 export const RECURRING_OPTIONS = [
   { key: "one_time", label: "One-time", discount: 0 },
   { key: "monthly",  label: "Monthly",  discount: 0.05 },
-  { key: "biweekly", label: "Bi-Weekly", discount: 0.10 },
+  { key: "biweekly", label: "Biweekly", discount: 0.10 },
   { key: "weekly",   label: "Weekly",   discount: 0.15 },
 ];
 

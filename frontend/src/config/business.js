@@ -4,10 +4,8 @@
 export const BUSINESS = {
   name: "Magic Genie Services",
   brandLine: "Regina's premium cleaning company",
-  phone: "639-590-1059",
-  phoneHref: "tel:+16395901059",
-  genieAssist: "+1 (236) 506-9800",
-  genieAssistHref: "tel:+12365069800",
+  phone: "236 506 9800",
+  phoneHref: "tel:+12365069800",
   email: "info@magicgenieservices.ca",
   emailHref: "mailto:info@magicgenieservices.ca",
   serviceArea: {
