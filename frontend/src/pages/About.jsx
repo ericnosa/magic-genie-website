@@ -10,7 +10,7 @@ export default function About() {
       <section className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-20 pb-24 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-6">
           <div className="eyebrow">About</div>
-          <h1 className="font-serif text-5xl lg:text-7xl mt-6 leading-[0.98] tracking-tight">Regina's calmer cleaning company.</h1>
+          <h1 className="font-serif text-5xl lg:text-7xl mt-6 leading-[0.98] tracking-tight">Where exceptional cleaning meets hospitality.</h1>
           <p className="mt-6 text-[16px] text-[#0A1128]/75 leading-relaxed max-w-lg">
             Magic Genie was built to give Regina homes and hosts a cleaning company that acts like a hospitality brand: consistent, quiet, on time, and priced up front.
           </p>
