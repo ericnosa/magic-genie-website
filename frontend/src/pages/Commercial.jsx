@@ -45,8 +45,26 @@ export default function Commercial() {
     <div data-testid="commercial-page">
       <SEO title="Commercial cleaning in Regina" description="Tailored commercial cleaning for offices, clinics, retail, and studios in Regina, Saskatchewan." path="/commercial" />
 
-      {/* HERO */}
-      <section className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-20 pb-16 grid lg:grid-cols-12 gap-10">
+      {/* HERO IMAGE — anchors the top with a real team-in-uniform shot */}
+      <section className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-8 lg:pt-12">
+        <figure className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(10,17,40,0.10)]" data-testid="commercial-hero-image">
+          <img
+            src="/images/commercial-team-office.jpg"
+            alt="A three-person Magic Genie team in branded uniforms cleaning a modern open-plan office with the branded cleaning cart"
+            className="w-full h-[380px] md:h-[520px] object-cover"
+            loading="eager"
+          />
+          <figcaption className="absolute left-6 bottom-6 md:left-10 md:bottom-10">
+            <div className="inline-flex items-center gap-3 backdrop-blur-xl bg-[#0A1128]/70 text-[#FDFBF7] px-5 py-3 rounded-full">
+              <span className="text-[10px] uppercase tracking-[0.24em] text-[#D4AF37]">Regina</span>
+              <span className="text-[13px]">Our team on a weekday office program</span>
+            </div>
+          </figcaption>
+        </figure>
+      </section>
+
+      {/* HERO TEXT + QUOTE FORM */}
+      <section className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-16 pb-16 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-6">
           <div className="eyebrow">Commercial</div>
           <h1 className="font-serif text-5xl lg:text-6xl mt-6 leading-[1.02] tracking-tight">A cleaning partner your team stops thinking about.</h1>

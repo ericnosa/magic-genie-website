@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { SPECIALTY } from "@/config/pricing";
 
-const IMG = "https://images.unsplash.com/photo-1631049421450-348ccd7f8949?crop=entropy&cs=srgb&fm=jpg&w=1800&q=85";
+const IMG = "/images/oven-scrub.jpg";
 
 export default function Airbnb() {
   return (
@@ -33,7 +33,7 @@ export default function Airbnb() {
           </Link>
         </div>
         <div className="lg:col-span-5">
-          <img src={IMG} alt="Hotel style bedroom" className="rounded-3xl w-full h-[520px] object-cover" />
+          <img src={IMG} alt="Gloved hand scrubbing a stainless steel oven surface to a guest-ready finish" className="rounded-3xl w-full h-[520px] object-cover" />
         </div>
       </section>
     </div>

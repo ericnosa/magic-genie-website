@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { SPECIALTY } from "@/config/pricing";
 
-const IMG = "https://images.unsplash.com/photo-1756079664354-34944e001f6d?crop=entropy&cs=srgb&fm=jpg&w=1800&q=85";
+const IMG = "/images/bathroom-team.jpg";
 
 export default function DeepCleaning() {
   return (
@@ -24,7 +24,7 @@ export default function DeepCleaning() {
           </Link>
         </div>
         <div className="lg:col-span-5">
-          <img src={IMG} alt="Deep cleaned bathroom" className="rounded-3xl w-full h-[520px] object-cover" />
+          <img src={IMG} alt="Two Magic Genie team members in branded uniforms deep-cleaning a luxury bathroom" className="rounded-3xl w-full h-[520px] object-cover" />
         </div>
       </section>
 
