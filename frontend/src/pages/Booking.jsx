@@ -145,6 +145,14 @@ export default function Booking() {
                       <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-[#D4AF37]">{p.tagline}</div>
                       <div className="mt-4 font-serif text-3xl">${RESIDENTIAL_PRICES[state.home_size][p.key]}</div>
                       <div className="text-xs text-[#0A1128]/60">flat for {HOME_SIZES.find(h => h.key === state.home_size).label}</div>
+                      <ul className="mt-5 pt-5 border-t border-[#0A1128]/8 space-y-2 text-[12.5px] text-[#0A1128]/75" data-testid={`pkg-${p.key}-includes`}>
+                        {p.includes.map((line) => (
+                          <li key={line} className="flex gap-2">
+                            <span className="text-[#D4AF37]">·</span>
+                            <span>{line}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </button>
                   ))}
                 </div>
