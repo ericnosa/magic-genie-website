@@ -4,6 +4,7 @@ import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { PACKAGES, RESIDENTIAL_PRICES } from "@/config/pricing";
 import { BUSINESS } from "@/config/business";
 import { useReveal } from "@/hooks/useReveal";
+import { LogoMark } from "@/components/LogoMark";
 
 const HERO_IMG =
   "https://images.unsplash.com/photo-1682888813913-e13f18692019?crop=entropy&cs=srgb&fm=jpg&w=2000&q=85";
@@ -29,6 +30,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-16 lg:pt-24 pb-24 lg:pb-32 grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-6 relative z-10">
+            <LogoMark size={88} animate testId="home-hero-logo" className="mb-8" />
             <div className="eyebrow">Regina · Saskatchewan</div>
             <h1 className="font-serif tracking-tight leading-[0.98] text-[#0A1128] text-5xl sm:text-6xl lg:text-7xl mt-6">
               A cleaning service that treats your home like a five-star suite.

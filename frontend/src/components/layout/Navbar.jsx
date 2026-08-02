@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { BUSINESS } from "@/config/business";
+import { LogoMark } from "@/components/LogoMark";
 
 const links = [
   { to: "/residential", label: "Residential" },
@@ -26,12 +27,10 @@ export function Navbar() {
       className="fixed top-0 inset-x-0 z-50 backdrop-blur-2xl bg-[#FDFBF7]/85 border-b border-[#0A1128]/5"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
-        <Link to="/" data-testid="brand-logo" className="flex items-baseline gap-2 group">
-          <span className="font-serif text-[26px] tracking-tight text-[#0A1128] leading-none">
+        <Link to="/" data-testid="brand-logo" className="flex items-center gap-3 group">
+          <LogoMark size={40} testId="brand-logo-mark" />
+          <span className="font-serif text-[24px] tracking-tight text-[#0A1128] leading-none hidden sm:inline">
             Magic Genie
-          </span>
-          <span className="text-[11px] uppercase tracking-[0.24em] text-[#D4AF37] hidden sm:inline">
-            Services
           </span>
         </Link>
 
