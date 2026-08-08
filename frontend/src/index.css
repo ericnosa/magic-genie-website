@@ -84,3 +84,12 @@ body {
 @layer base {
   * { @apply border-border; }
 }
+
+/* Ensure the ElevenLabs Convai widget sits above the sticky mobile CTA
+   (which uses z-40). The widget was hidden on mobile because a full-width
+   sticky bar previously covered the bottom-right corner. Kept as a defensive
+   guardrail even after the sticky CTA was narrowed. */
+elevenlabs-convai {
+  z-index: 60 !important;
+  position: relative;
+}

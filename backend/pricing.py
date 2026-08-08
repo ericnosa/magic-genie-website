@@ -46,6 +46,10 @@ AIRBNB_RANGES = {
 AIRBNB_SAME_DAY = 25
 MIN_BOOKING = 99
 
+# Saskatchewan sales taxes (applied on subtotal, per booking spec).
+GST_RATE = 0.05
+PST_RATE = 0.06
+
 HOME_SIZE_LABELS = {
     "studio": "Studio",
     "one_bed": "One Bedroom",
@@ -82,7 +86,11 @@ def compute_quote(home_size: str, package: str, add_ons: list[str],
     subtotal = base + add_on_total
     discount_rate = RECURRING_DISCOUNTS.get(recurring, 0)
     discount_amount = round(subtotal * discount_rate, 2)
-    total = max(subtotal - discount_amount, MIN_BOOKING)
+    # Saskatchewan taxes on the subtotal, rounded to the cent before summing
+    # so numbers stay exact between booking page and confirmation emails.
+    gst = round(subtotal * GST_RATE, 2)
+    pst = round(subtotal * PST_RATE, 2)
+    total = round(max(subtotal + gst + pst - discount_amount, MIN_BOOKING), 2)
 
     return {
         "home_size": home_size,
@@ -96,5 +104,7 @@ def compute_quote(home_size: str, package: str, add_ons: list[str],
         "recurring": recurring,
         "discount_rate": discount_rate,
         "discount_amount": discount_amount,
+        "gst": gst,
+        "pst": pst,
         "total": total,
     }

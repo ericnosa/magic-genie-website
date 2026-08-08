@@ -1,0 +1,25 @@
+{
+  "summary": "Iteration 4 — narrow-scope bug-fix pass. All 3 fixes verified: (1) mobile ElevenLabs widget + sticky CTA coexistence, (2) tax breakdown on booking page & backend /api/quote, (3) itemized customer + admin confirmation emails via shared _breakdown_rows helper. Full booking regression still lands on /booking/confirmation/:id.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [
+    "/app/backend/tests/test_quote_and_bookings.py",
+    "/app/test_reports/pytest/iteration4.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "emailer.py:9 uses os.environ[...] at import-time. In test contexts where EMERGENT_EMAIL_KEY is unset, this will crash import. Tests handle it via setdefault before importing, but a load-time getenv with a default (or lazy access inside send_email) would be more resilient.",
+    "Booking.jsx keeps a computed frontend quote in the client but the backend recomputes on POST — good practice (client cannot manipulate price). Values matched exactly in this test, but ensure any future frontend-only tweak (e.g., rounding tie-break) is mirrored in pricing.py to avoid drift.",
+    "StickyMobileCTA uses z-40 and index.css raises elevenlabs-convai to z-60 via !important. Fine for now — worth adding a brief comment in StickyMobileCTA.jsx pointing to the index.css override so future edits don't lower it."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_quote_and_bookings.py (new)"
+  ],
+  "success_rate": {"backend": "100% (7/7)", "frontend": "100% (3/3 flows)"},
+  "test_credentials": "None required",
+  "seed_data_creation": "Created 2 TEST_ prefixed bookings during regression + persistence tests. Booking IDs generated on-the-fly (e.g., MG-B1617B); not cleaned up (no delete endpoint), but flagged with TEST_ prefix.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend tests live at /app/backend/tests/test_quote_and_bookings.py — reuse for regression. Confirmed math: two_bed/deluxe/[]/one_time -> 249/12.45/14.94/276.39; two_bed/deluxe/[pet_hair]/biweekly -> 264/26.40/13.20/15.84/266.64; studio/standard/[]/one_time -> 119/0/5.95/7.14/132.09. Live Summary data-testid keys are summary-subtotal / summary-discount (conditional) / summary-gst / summary-pst / summary-total. Mobile sticky CTA measured at (x=16, w=99) so bottom-right corner is free for Convai widget; widget zIndex computed to '60'.",
+  "rca of the issue": "N/A — this iteration verified E1's fixes. Root cause of prior mobile-widget bug was a full-width sticky bar overlapping the widget mount; fix narrowed the sticky CTA to a left-anchored pill (bottom-4 left-4, auto width) and defensively raised elevenlabs-convai z-index to 60 via a global CSS rule."
+}

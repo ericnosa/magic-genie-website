@@ -303,10 +303,12 @@ export default function Booking() {
               {quote.addOnLines.map((a) => (
                 <div key={a.key} className="flex justify-between"><span>{a.name}</span><span>${a.price}</span></div>
               ))}
-              <div className="flex justify-between border-t border-[#FDFBF7]/10 pt-2 mt-2"><span>Subtotal</span><span>${quote.subtotal.toFixed(2)}</span></div>
+              <div className="flex justify-between border-t border-[#FDFBF7]/10 pt-2 mt-2" data-testid="summary-subtotal"><span>Subtotal</span><span>${quote.subtotal.toFixed(2)}</span></div>
               {quote.discountAmount > 0 && (
-                <div className="flex justify-between text-[#D4AF37]"><span>Recurring discount</span><span>-${quote.discountAmount.toFixed(2)}</span></div>
+                <div className="flex justify-between text-[#D4AF37]" data-testid="summary-discount"><span>Recurring discount</span><span>-${quote.discountAmount.toFixed(2)}</span></div>
               )}
+              <div className="flex justify-between" data-testid="summary-gst"><span>GST (5%)</span><span>${quote.gst.toFixed(2)}</span></div>
+              <div className="flex justify-between" data-testid="summary-pst"><span>PST (6%)</span><span>${quote.pst.toFixed(2)}</span></div>
             </div>
 
             <div className="mt-6 pt-4 border-t border-[#FDFBF7]/10 flex items-baseline justify-between">
