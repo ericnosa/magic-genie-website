@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { PACKAGES, RESIDENTIAL_PRICES, HOME_SIZES, ADD_ONS, RECURRING_OPTIONS, SPECIALTY, MIN_BOOKING } from "@/config/pricing";
+import { PACKAGES, RESIDENTIAL_PRICES, HOME_SIZES, ADD_ONS, RECURRING_OPTIONS, SPECIALTY, MIN_ONE_TIME, MIN_RECURRING } from "@/config/pricing";
 
 export default function Pricing() {
   return (
@@ -10,7 +10,7 @@ export default function Pricing() {
         <div className="eyebrow">Pricing</div>
         <h1 className="font-serif text-5xl lg:text-7xl mt-6 leading-[0.98] tracking-tight max-w-3xl">The price you see is the price you pay.</h1>
         <p className="mt-6 text-[16px] text-[#0A1128]/70 max-w-2xl leading-relaxed">
-          Flat rates by home size. Add-ons priced individually. Recurring discounts applied automatically at booking. Minimum booking ${MIN_BOOKING} CAD.
+          Flat rates by home size. Add-ons priced individually. Recurring discounts applied automatically at booking. Minimum booking ${MIN_ONE_TIME} CAD one-time, ${MIN_RECURRING} CAD on a recurring plan.
         </p>
       </section>
 
@@ -86,7 +86,7 @@ export default function Pricing() {
           <div className="eyebrow">Booking policies</div>
           <h2 className="font-serif text-3xl mt-3">Clear, fair, human</h2>
           <ul className="mt-6 space-y-3 text-[14px] text-[#0A1128]/80 leading-relaxed">
-            <li>Minimum booking of ${MIN_BOOKING} CAD.</li>
+            <li>Minimum booking of ${MIN_ONE_TIME} CAD one-time, or ${MIN_RECURRING} CAD on a recurring plan.</li>
             <li>Free reschedule up to 24 hours ahead of the appointment.</li>
             <li>Reschedules inside 24 hours are charged at 50 percent of the booking.</li>
             <li>No-shows are charged in full.</li>

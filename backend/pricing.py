@@ -44,7 +44,11 @@ AIRBNB_RANGES = {
     "two_plus":   {"min": 109, "max": 139},
 }
 AIRBNB_SAME_DAY = 25
-MIN_BOOKING = 99
+# A one-time job has to carry its own acquisition cost; a recurring job does not.
+MIN_ONE_TIME = 139
+MIN_RECURRING = 119
+# Kept so existing imports and the /api/pricing response keep working.
+MIN_BOOKING = MIN_ONE_TIME
 
 # Saskatchewan sales taxes (applied on subtotal, per booking spec).
 GST_RATE = 0.05
@@ -66,7 +70,7 @@ PACKAGE_LABELS = {
 
 
 def compute_quote(home_size: str, package: str, add_ons: list[str],
-                  recurring: str = "one_time") -> dict:
+                  recurring: str = "one_time", min_pre_tax=None) -> dict:
     """Server-side quote calculation. Returns line items + totals."""
     base = RESIDENTIAL[home_size][package]
     included = INCLUDED_ADDONS.get(package, set())
@@ -86,11 +90,20 @@ def compute_quote(home_size: str, package: str, add_ons: list[str],
     subtotal = base + add_on_total
     discount_rate = RECURRING_DISCOUNTS.get(recurring, 0)
     discount_amount = round(subtotal * discount_rate, 2)
-    # Saskatchewan taxes on the subtotal, rounded to the cent before summing
-    # so numbers stay exact between booking page and confirmation emails.
-    gst = round(subtotal * GST_RATE, 2)
-    pst = round(subtotal * PST_RATE, 2)
-    total = round(max(subtotal + gst + pst - discount_amount, MIN_BOOKING), 2)
+    discounted_subtotal = round(subtotal - discount_amount, 2)
+    # Saskatchewan taxes are charged on the DISCOUNTED subtotal - the amount the customer
+    # actually pays for the service. Charging them on the pre-discount subtotal overcharged
+    # every discounted booking and made GST remitted differ from GST collected.
+    # Round each tax to the cent before summing so the booking page and the confirmation
+    # email always agree.
+    if min_pre_tax is None:
+        min_pre_tax = MIN_ONE_TIME if recurring == "one_time" else MIN_RECURRING
+    floor = min_pre_tax
+    taxable_base = round(max(discounted_subtotal, floor), 2)
+    minimum_applied = taxable_base != discounted_subtotal
+    gst = round(taxable_base * GST_RATE, 2)
+    pst = round(taxable_base * PST_RATE, 2)
+    total = round(taxable_base + gst + pst, 2)
 
     return {
         "home_size": home_size,
@@ -101,6 +114,9 @@ def compute_quote(home_size: str, package: str, add_ons: list[str],
         "add_ons": add_on_lines,
         "add_on_total": add_on_total,
         "subtotal": subtotal,
+        "discounted_subtotal": discounted_subtotal,
+        "taxable_base": taxable_base,
+        "minimum_applied": minimum_applied,
         "recurring": recurring,
         "discount_rate": discount_rate,
         "discount_amount": discount_amount,

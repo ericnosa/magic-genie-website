@@ -16,6 +16,7 @@ load_dotenv(ROOT_DIR / '.env')
 from pricing import (
     RESIDENTIAL, ADD_ONS, INCLUDED_ADDONS, RECURRING_DISCOUNTS,
     HOME_SIZE_LABELS, PACKAGE_LABELS, compute_quote, MIN_BOOKING,
+    MIN_ONE_TIME, MIN_RECURRING,
 )
 from emailer import send_email, render_customer_confirmation, render_admin_notification
 
@@ -98,7 +99,9 @@ async def get_pricing():
         "recurring_discounts": RECURRING_DISCOUNTS,
         "home_size_labels": HOME_SIZE_LABELS,
         "package_labels": PACKAGE_LABELS,
-        "min_booking": MIN_BOOKING,
+        "min_booking": MIN_ONE_TIME,
+        "min_one_time": MIN_ONE_TIME,
+        "min_recurring": MIN_RECURRING,
     }
 
 

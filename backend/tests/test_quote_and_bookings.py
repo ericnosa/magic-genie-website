@@ -28,9 +28,11 @@ class TestQuoteMath:
         d = r.json()
         assert d["subtotal"] == 264
         assert d["discount_amount"] == 26.40
-        assert d["gst"] == 13.20
-        assert d["pst"] == 15.84
-        assert d["total"] == 266.64
+        # Taxes are charged on the discounted subtotal (237.60), not on 264.
+        assert d["discounted_subtotal"] == 237.60
+        assert d["gst"] == 11.88
+        assert d["pst"] == 14.26
+        assert d["total"] == 263.74
 
     def test_studio_standard_one_time(self):
         r = requests.post(f"{API}/quote", json={
@@ -41,9 +43,11 @@ class TestQuoteMath:
         d = r.json()
         assert d["subtotal"] == 119
         assert d["discount_amount"] == 0
-        assert d["gst"] == 5.95
-        assert d["pst"] == 7.14
-        assert d["total"] == 132.09
+        # A one-time booking floors at 139 pre-tax, so the taxable base is 139, not 119.
+        assert d["taxable_base"] == 139
+        assert d["gst"] == 6.95
+        assert d["pst"] == 8.34
+        assert d["total"] == 154.29
 
     def test_default_two_bed_deluxe_no_addons(self):
         """Live Summary default — subtotal=249, gst=12.45, pst=14.94, total=276.39."""

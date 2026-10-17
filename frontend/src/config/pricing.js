@@ -102,7 +102,11 @@ export const SPECIALTY = {
   },
 };
 
-export const MIN_BOOKING = 99;
+// A one-time job has to carry its own acquisition cost; a recurring job does not.
+export const MIN_ONE_TIME = 139;
+export const MIN_RECURRING = 119;
+// Kept so existing imports keep working.
+export const MIN_BOOKING = MIN_ONE_TIME;
 
 export const POLICIES = {
   reschedule_window_hours: [24, 48],
@@ -113,7 +117,7 @@ export const POLICIES = {
 // ------- calculation -------
 export const TAX = { gst: 0.05, pst: 0.06 };
 
-export function computeQuote({ home_size, pkg, add_ons = [], recurring = "one_time" }) {
+export function computeQuote({ home_size, pkg, add_ons = [], recurring = "one_time", minFloor = null }) {
   const base = RESIDENTIAL_PRICES[home_size]?.[pkg] ?? 0;
   const included = INCLUDED_ADDONS[pkg] ?? new Set();
   const addOnLines = add_ons
@@ -124,11 +128,16 @@ export function computeQuote({ home_size, pkg, add_ons = [], recurring = "one_ti
   const subtotal = base + addOnTotal;
   const discount = RECURRING_OPTIONS.find((r) => r.key === recurring)?.discount ?? 0;
   const discountAmount = +(subtotal * discount).toFixed(2);
-  // Saskatchewan taxes calculated on the subtotal (base + add-ons).
-  // Round each tax amount to the cent BEFORE summing so displayed totals are exact.
-  const gst = +(subtotal * TAX.gst).toFixed(2);
-  const pst = +(subtotal * TAX.pst).toFixed(2);
-  const preMin = subtotal + gst + pst - discountAmount;
-  const total = +Math.max(preMin, MIN_BOOKING).toFixed(2);
-  return { base, addOnLines, addOnTotal, subtotal, discount, discountAmount, gst, pst, total };
+  const discountedSubtotal = +(subtotal - discountAmount).toFixed(2);
+  // Saskatchewan taxes are charged on the DISCOUNTED subtotal - the amount the customer
+  // actually pays. Charging them on the pre-discount subtotal overcharged every discounted
+  // booking. Round each tax to the cent BEFORE summing so the displayed total is exact.
+  const minPreTax = minFloor ?? (recurring === "one_time" ? MIN_ONE_TIME : MIN_RECURRING);
+  const taxableBase = +Math.max(discountedSubtotal, minPreTax).toFixed(2);
+  const minimumApplied = taxableBase !== discountedSubtotal;
+  const gst = +(taxableBase * TAX.gst).toFixed(2);
+  const pst = +(taxableBase * TAX.pst).toFixed(2);
+  const total = +(taxableBase + gst + pst).toFixed(2);
+  return { base, addOnLines, addOnTotal, subtotal, discountedSubtotal, taxableBase, minimumApplied,
+           discount, discountAmount, gst, pst, total };
 }
