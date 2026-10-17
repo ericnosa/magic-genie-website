@@ -100,6 +100,13 @@ export default function Booking() {
         notes: state.notes || null,
       });
       localStorage.removeItem("mg_booking_v1");
+      // Keep the booking's own token so the confirmation page can open it. Without this the
+      // page falls back to asking for the email address.
+      if (res.data?.access_token) {
+        try {
+          localStorage.setItem(`mg_booking_token_${res.data.booking_id}`, res.data.access_token);
+        } catch { /* private mode: the email fallback still works */ }
+      }
       nav(`/booking/confirmation/${res.data.booking_id}`);
     } catch (e) {
       console.error(e);

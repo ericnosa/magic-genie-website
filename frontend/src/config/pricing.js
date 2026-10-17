@@ -94,10 +94,13 @@ export const RECURRING_OPTIONS = [
 ];
 
 export const SPECIALTY = {
-  deep_clean_starting: 279,
+  // The bookable deep clean is the Fresh Start package; its cheapest size (studio) is
+  // $229, so $279 advertised a price the booking flow could not sell.
+  deep_clean_starting: 229,
   airbnb: {
-    studio_1br: { min: 79, max: 99 },
-    two_plus:   { min: 109, max: 139 },
+    // $79 for a turnover left roughly $10 of contribution on a two-hour job.
+    studio_1br: { min: 119, max: 139 },
+    two_plus:   { min: 149, max: 189 },
     same_day: 25,
   },
 };

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -120,6 +120,9 @@ async def create_booking(req: BookingCreate):
     now_iso = datetime.now(timezone.utc).isoformat()
     doc = {
         "booking_id": booking_id,
+        # Ownership proof for GET /bookings/{id}. A random 32-char token, so a booking can
+        # only be read by whoever made it (or by someone who knows the email on it).
+        "access_token": uuid.uuid4().hex,
         "customer_name": req.customer_name,
         "customer_email": req.customer_email,
         "customer_phone": req.customer_phone,
@@ -160,10 +163,24 @@ async def create_booking(req: BookingCreate):
 
 
 @api_router.get("/bookings/{booking_id}")
-async def get_booking(booking_id: str):
+async def get_booking(booking_id: str, request: Request,
+                      t: Optional[str] = None, email: Optional[str] = None):
     doc = await db.bookings.find_one({"booking_id": booking_id}, {"_id": 0})
     if not doc:
         raise HTTPException(404, "Booking not found")
+
+    # The reference alone is NOT proof of ownership. "MG-" + 6 hex characters is only
+    # ~16.7M possibilities, so an unauthenticated lookup let anyone walk the space and
+    # read customer name, email, phone and address. Require the booking's own token, or
+    # the email address the booking was placed with.
+    supplied = (t or request.headers.get("x-booking-token") or "").strip()
+    supplied_email = (email or "").strip().lower()
+    token_ok = bool(doc.get("access_token")) and supplied == doc["access_token"]
+    email_ok = (bool(doc.get("customer_email"))
+                and supplied_email == str(doc["customer_email"]).strip().lower())
+    if not (token_ok or email_ok):
+        raise HTTPException(403, "Booking verification required")
+
     return doc
 
 

@@ -38,10 +38,10 @@ RECURRING_DISCOUNTS = {
     "weekly":     0.15,
 }
 
-DEEP_CLEAN_STARTING = 279
+DEEP_CLEAN_STARTING = 229
 AIRBNB_RANGES = {
-    "studio_1br": {"min": 79,  "max": 99},
-    "two_plus":   {"min": 109, "max": 139},
+    "studio_1br": {"min": 119, "max": 139},
+    "two_plus":   {"min": 149, "max": 189},
 }
 AIRBNB_SAME_DAY = 25
 # A one-time job has to carry its own acquisition cost; a recurring job does not.
