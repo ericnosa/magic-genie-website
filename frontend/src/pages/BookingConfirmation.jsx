@@ -75,7 +75,7 @@ export default function BookingConfirmation() {
         </button>
       </form>
       <p className="mt-6 text-xs text-[#0A1128]/60">
-        Trouble getting in? Call {BUSINESS.phone} or email {BUSINESS.email}. Reference {id}.
+        Trouble getting in? Email {BUSINESS.email} with reference {id} and we'll sort it out.
       </p>
     </div>
   );
@@ -98,7 +98,7 @@ export default function BookingConfirmation() {
       <div className="eyebrow mt-8">Confirmed</div>
       <h1 className="font-serif text-5xl lg:text-6xl mt-4 leading-[1.02] tracking-tight">Your cleaning is booked.</h1>
       <p className="mt-4 text-[16px] text-[#0A1128]/70 max-w-xl leading-relaxed">
-        Save your reference below. We'll email a copy to {b.customer_email} shortly. To change anything, call us at {BUSINESS.phone} or reply to the confirmation email.
+        Save your reference below. We'll email a copy to {b.customer_email} shortly. To change anything, just reply to that email and a person will take care of it.
       </p>
 
       <div className="mt-10 rounded-3xl bg-white border border-[#0A1128]/8 p-8 lg:p-10">
